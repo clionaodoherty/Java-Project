@@ -1,6 +1,7 @@
-package part1tester;
+package part02;
 
 public class product {
+	
 	//The following are the instance variables for the product class
 	private int proCode;
 	private String proMake;
@@ -19,7 +20,6 @@ public class product {
 		this.proDiscontinued = proDiscontinued;
 		
 		 //the following are Mutator and accessor methods for each of the instance variables.
-				
 	}
 
 	public int getProCode() {
@@ -70,14 +70,14 @@ public class product {
 		this.proDiscontinued = proDiscontinued;
 	}
 	
-	
+
 	//This method simply returns the string getProductDetails to be used when called
 	// This method should print the product details
 	public void getProductDetails() {
 	  System.out.println("Product Code: " + getProCode());
 	  System.out.println("Product Make: " + getProMake());
 	  System.out.println("Product Model: " + getProModel());
-	  System.out.println("Product Price: £" + getProPrice());
+	  System.out.println("Product Price: " + getProPrice());
 	  System.out.println("------------------------------------------");
 	 }
 	
@@ -89,3 +89,11 @@ public class product {
 		return returnString;
 	}
 }
+
+
+
+
+
+
+
+

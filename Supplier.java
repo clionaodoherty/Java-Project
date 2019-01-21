@@ -1,4 +1,4 @@
-package part1tester;
+package part02;
 //importing the scanner into the supplier class to allow user input
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -6,8 +6,9 @@ import java.util.ArrayList;
 public class Supplier {
 	//Initialising the scanner
 	Scanner input = new Scanner(System.in);
-
-	 //The following are the instance variables for the Supplier class
+	
+	
+   //The following are the instance variables for the Supplier class
 	private int supCode;
 	private String supName;
 	private Address supAddress;
@@ -23,7 +24,7 @@ public class Supplier {
 		this.supRegion = supRegion;
 		this.supProducts = supProducts;
 		
-		//The following are Mutator and accessor methods for each of the instance variables.
+    //The following are Mutator and accessor methods for each of the instance variables.
 	}
 
 	public int getSupCode() {
@@ -76,7 +77,7 @@ public class Supplier {
 	
 	
 	}
-	 //This method simply returns the string printSupplierDetails to be used when called
+    //This method simply returns the string printSupplierDetails to be used when called
 	// This method should print the supplier's Details
 	public void printSupplierDetails() {
 		System.out.println("\n----Supplier Details----");
@@ -92,9 +93,9 @@ public class Supplier {
 		
 		System.out.println();
 		}
+
 	
-	
-	// The following method will allow us to ask the user for information 
+    // The following method will allow us to ask the user for information 
 	//to add a new product to the system
 	public void addProducts(Scanner input) {
 		//scanner declared to allow user input
@@ -105,19 +106,50 @@ public class Supplier {
 		input.nextLine();
 		System.out.println();
 		System.out.println("Product Code: ");
+		//validation to ensure the data entered is an integer
+		while (!input.hasNextInt()) {
+			input.next();
+			System.out.println("**Error** - Please enter an integer");
+			//Error message provided by system if invalid data type is entered
+		}
 		int proCode = input.nextInt();
 		input.nextLine();
 		
+		input.nextLine();
 		System.out.println("Product Make: ");
+		// this validation ensures that only data of type string can be entered i.e letters between A and Z 
+		//takes into consideration the case of the letters entered
+		while (!input.hasNext("[a-zA-Z]+")) {
+			input.next();
+			System.out.println("**Error** - Please enter a valid Product Make");
+		}
 		String proMake = input.nextLine();
+		//input.nextLine();
 		
+		input.nextLine();
 		System.out.println("Product Model: ");
+		while (!input.hasNext("[a-zA-Z]+")) {
+			input.next();
+			System.out.println("**Error** - Please enter a valid Product Model");
+		}
 		String proModel = input.nextLine();
+		input.nextLine();
+	
 		
+		input.nextLine();
 		System.out.println("Product Price: ");
+		//validation to ensure the data entered is of type double
+		while (!input.hasNextDouble()) {
+			input.next();
+			System.out.println("**Error** - Please enter a valid price");
+		}
 		double proPrice = input.nextDouble();
 		
 		System.out.println("Quantity Available: ");
+		while (!input.hasNextInt()) {
+			input.next();
+			System.out.println("**Error** - Please enter an integer");
+		}
 		int proQtyAvailable = input.nextInt();
 		input.nextLine();
 		
@@ -139,15 +171,25 @@ public class Supplier {
 	userIn = input.nextLine();
 
 		}
-		
+
 	product newProduct = new product(proCode, proMake, proModel, proPrice, proQtyAvailable, proDiscontinued);
 
 	getSupProducts().add(newProduct);
 		System.out.println("Product successfully added!");
-	 
+		
+	}
 	
 	
 	}
+	
+	// Main Menu option 6- Method which allows the user to search for a given supplier
+		public void searchSupplier(String searchName) {
+ 		if ((searchName.equalsIgnoreCase(getSupName()))) {
+ 			System.out.println("The supplier " + searchName + " produces the following products: " + "\n");
+ 			for (int j = 0; j < getSupProducts().size(); j++) {
+ 				System.out.println(getSupProducts().get(j).getProMake() + ": " + getSupProducts().get(j).getProModel());
+ 			}
+ 		}
 
 }
 	}
